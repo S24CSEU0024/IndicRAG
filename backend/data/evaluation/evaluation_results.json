@@ -1,0 +1,350 @@
+{
+  "total_queries_evaluated": 120,
+  "sample_size": 120,
+  "module_1": {
+    "name": "Module 1: Lexical (TF-IDF, BM25) vs Multilingual Dense Retrieval",
+    "TF-IDF": {
+      "Recall@1": 0.1174,
+      "Precision@1": 0.125,
+      "HitRate@1": 0.125,
+      "Recall@3": 0.2765,
+      "Precision@3": 0.1174,
+      "HitRate@3": 0.3409,
+      "Recall@5": 0.3201,
+      "Precision@5": 0.0886,
+      "HitRate@5": 0.4205,
+      "MRR": 0.2405
+    },
+    "BM25": {
+      "Recall@1": 0.1326,
+      "Precision@1": 0.1477,
+      "HitRate@1": 0.1477,
+      "Recall@3": 0.2746,
+      "Precision@3": 0.1174,
+      "HitRate@3": 0.3523,
+      "Recall@5": 0.3144,
+      "Precision@5": 0.0886,
+      "HitRate@5": 0.4205,
+      "MRR": 0.2521
+    },
+    "Multilingual_Dense": {
+      "Recall@1": 0.0682,
+      "Precision@1": 0.0795,
+      "HitRate@1": 0.0795,
+      "Recall@3": 0.1364,
+      "Precision@3": 0.0568,
+      "HitRate@3": 0.1705,
+      "Recall@5": 0.2424,
+      "Precision@5": 0.0636,
+      "HitRate@5": 0.2955,
+      "MRR": 0.1515
+    }
+  },
+  "module_2": {
+    "name": "Module 2: Monolingual vs Cross-Lingual vs Code-Mixed Comparison",
+    "results_by_language": {
+      "English": {
+        "query_count": 32,
+        "MRR": 0.2365,
+        "Recall@5": 0.375,
+        "HitRate@5": 0.4375
+      },
+      "Indic": {
+        "query_count": 29,
+        "MRR": 0.2397,
+        "Recall@5": 0.2989,
+        "HitRate@5": 0.3793
+      },
+      "Code-Mixed": {
+        "query_count": 27,
+        "MRR": 0.2204,
+        "Recall@5": 0.2901,
+        "HitRate@5": 0.3704
+      }
+    }
+  },
+  "module_3": {
+    "name": "Module 3: Lexical vs Dense vs Hybrid Retrieval (Alpha Sweep)",
+    "alpha_sweep": {
+      "Pure Dense (α=0.0)": {
+        "alpha": 0.0,
+        "MRR": 0.1515,
+        "Recall@5": 0.2424,
+        "HitRate@5": 0.2955
+      },
+      "Dense Heavy (α=0.25)": {
+        "alpha": 0.25,
+        "MRR": 0.1843,
+        "Recall@5": 0.2538,
+        "HitRate@5": 0.3182
+      },
+      "Balanced Hybrid (α=0.5)": {
+        "alpha": 0.5,
+        "MRR": 0.2326,
+        "Recall@5": 0.3239,
+        "HitRate@5": 0.3977
+      },
+      "Lexical Heavy (α=0.75)": {
+        "alpha": 0.75,
+        "MRR": 0.2659,
+        "Recall@5": 0.3239,
+        "HitRate@5": 0.4091
+      },
+      "Pure Lexical (α=1.0)": {
+        "alpha": 1.0,
+        "MRR": 0.2521,
+        "Recall@5": 0.3144,
+        "HitRate@5": 0.4205
+      }
+    }
+  },
+  "module_4": {
+    "name": "Module 4: Direct LLM vs Retrieval-Augmented Generation",
+    "Direct_LLM": {
+      "ExactMatch": 0.0,
+      "TokenF1": 0.0842,
+      "AnswerCorrectness": 0.0842,
+      "HallucinationRate": 1.0,
+      "GroundednessScore": 0.0
+    },
+    "IndicRAG": {
+      "ExactMatch": 0.0,
+      "TokenF1": 0.1986,
+      "AnswerCorrectness": 0.2249,
+      "HallucinationRate": 0.4,
+      "GroundednessScore": 0.6
+    }
+  },
+  "module_5": {
+    "name": "Module 5: Answerability Detection & Hallucination Prevention",
+    "metrics": {
+      "Accuracy": 0.8167,
+      "Precision": 1.0,
+      "Recall": 0.75,
+      "F1": 0.8571,
+      "RejectionRate": 1.0,
+      "ConfusionMatrix": {
+        "TruePositive": 66,
+        "FalsePositive": 0,
+        "TrueNegative": 32,
+        "FalseNegative": 22
+      },
+      "TotalQueries": 120
+    }
+  },
+  "module_6": {
+    "name": "Module 6: Qualitative Analysis of Difficult Cases",
+    "total_cases": 16,
+    "correct_handling_accuracy": 0.9375,
+    "cases": [
+      {
+        "case_id": "DIFF_01",
+        "type": "Code-Mixing & Slang",
+        "query": "Yaar mujhe batao scholarship ke liye 12th board me kitna percent compulsory hai?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Colloquial Hindi particle 'Yaar' with mixed English/Hindi syntax",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.425,
+        "top_source": "scholarship_policy.pdf (p.3)",
+        "answer_excerpt": "2, ACADEMIC SCHOLARSHIP [Passage 5] 1.2.3 SIBLING SCHOLARSHIP [Passage 1] time of Registration and shall be\nreviewed by ..."
+      },
+      {
+        "case_id": "DIFF_02",
+        "type": "Phonetic Spelling Variation",
+        "query": "skolerchip ke liye minimum elegibility critaria kya hai?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Phonetic misspelling of scholarship ('skolerchip'), eligibility ('elegibility'), and criteria ('critaria')",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.6625,
+        "top_source": "scholarship_policy.pdf (p.1)",
+        "answer_excerpt": "Students should have earned the minimum credits as specified in the curriculum framework in the respective\nacademic year..."
+      },
+      {
+        "case_id": "DIFF_03",
+        "type": "Cross-Lingual Devanagari Script",
+        "query": "एंड सेमेस्टर परीक्षा पास करने के लिए न्यूनतम कितने प्रतिशत अंक चाहिए?",
+        "detected_language": "Indic",
+        "difficulty_factor": "Pure Devanagari script query querying an English-language document",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "UNANSWERABLE",
+        "is_correct_detection": false,
+        "confidence": 0.3,
+        "top_source": "examination_manual.pdf (p.33)",
+        "answer_excerpt": "Insufficient information available in the provided documents."
+      },
+      {
+        "case_id": "DIFF_04",
+        "type": "Exact Numerical Threshold",
+        "query": "How many marks out of 100 are mandatory to pass a course overall?",
+        "detected_language": "English",
+        "difficulty_factor": "Exact boundary condition (40 out of 100 overall, 30% in end sem)",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.9438,
+        "top_source": "examination_manual.pdf (p.22)",
+        "answer_excerpt": "A total of 40 marks out of 100 is mandatory to pass a course, except for the School of Law\n(SOL), which is 50 marks out ..."
+      },
+      {
+        "case_id": "DIFF_05",
+        "type": "Stamp Paper Value & Named Entity",
+        "query": "Kitne rupees ke stamp paper par single girl child ka affidavit banta hai?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Extracting monetary denomination 'Rs. 100' stamp paper and specific affidavit type",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.8875,
+        "top_source": "scholarship_policy.pdf (p.11)",
+        "answer_excerpt": "CBENNETT\nUNIVERSITY\nTHE TIMES GROUP\nANNEXURE - B\nAFFIDAVIT BY PARENTS FOR SINGLE GIRL CHILD\nI,\nRs. [Passage 1] Amount of..."
+      },
+      {
+        "case_id": "DIFF_06",
+        "type": "Named Entities & Committee Composition",
+        "query": "Who are the members of the Scholarship Committee that reviews merit scholarships?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Multi-entity extraction: Registrar, VP Admissions & Marketing, Finance Controller",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.742,
+        "top_source": "scholarship_policy.pdf (p.1)",
+        "answer_excerpt": "ACADEMIC SCHOLARSHIP\nFor Students who were not eligible for on-admission scholarships during their admission at Bennett ..."
+      },
+      {
+        "case_id": "DIFF_07",
+        "type": "Ambiguity Between Schemes",
+        "query": "Can a student receive both sibling scholarship and merit scholarship together?",
+        "detected_language": "English",
+        "difficulty_factor": "Disambiguating rule: only the single highest monetary value scholarship is awarded",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.702,
+        "top_source": "scholarship_policy.pdf (p.1)",
+        "answer_excerpt": "1.1 MERIT SCHOLARSHIP FOR FIRST YEAR [Passage 1] Procedure for Grant of Merit Scholarship [Passage 4] These scholarships..."
+      },
+      {
+        "case_id": "DIFF_08",
+        "type": "Grade Point Semantics",
+        "query": "Does an F grade carry any grade points towards CGPA?",
+        "detected_language": "English",
+        "difficulty_factor": "Semantic understanding that failing grade 'F' awards 0 grade points and course must be repeated",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.8071,
+        "top_source": "examination_manual.pdf (p.31)",
+        "answer_excerpt": "In the\ncase of 'F', no grade points are awarded. [Passage 1] (c) Divide the total grade points by the total number of re..."
+      },
+      {
+        "case_id": "DIFF_09",
+        "type": "Intentionally Unanswerable with Believable Entity",
+        "query": "What is the sports scholarship percentage for national archery championship winners?",
+        "detected_language": "English",
+        "difficulty_factor": "Hallucination trap: sounds plausible but archery sports quota is absent in text",
+        "expected_answerable": "UNANSWERABLE",
+        "predicted_answerable": "UNANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.12,
+        "top_source": "scholarship_policy.pdf (p.2)",
+        "answer_excerpt": "Insufficient information available in the provided documents."
+      },
+      {
+        "case_id": "DIFF_10",
+        "type": "Intentionally Unanswerable in Hinglish",
+        "query": "Hostel me pet cat rakhne ke liye warden se permission kaise milti hai?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Hallucination trap in Hinglish: hostel pet policy is nonexistent in policy docs",
+        "expected_answerable": "UNANSWERABLE",
+        "predicted_answerable": "UNANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.12,
+        "top_source": "student_parent_undertaking.pdf (p.3)",
+        "answer_excerpt": "Insufficient information available in the provided documents."
+      },
+      {
+        "case_id": "DIFF_11",
+        "type": "Intentionally Unanswerable in Devanagari",
+        "query": "पीएचडी छात्रों को नासा रिसर्च प्रोजेक्ट के लिए कितना मासिक स्टाइपेंड मिलता है?",
+        "detected_language": "Indic",
+        "difficulty_factor": "Hallucination trap in Devanagari: fictitious research collaboration",
+        "expected_answerable": "UNANSWERABLE",
+        "predicted_answerable": "UNANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.3,
+        "top_source": "examination_manual.pdf (p.56)",
+        "answer_excerpt": "Insufficient information available in the provided documents."
+      },
+      {
+        "case_id": "DIFF_12",
+        "type": "Multi-Condition Rule",
+        "query": "Advance fee due date miss hone par scholarship ka kya hota hai?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Contingent policy rule: candidate loses claim and scholarship is passed to next candidate",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.8714,
+        "top_source": "scholarship_policy.pdf (p.2)",
+        "answer_excerpt": "Candidates must enroll for the program by depositing the advance fee by the given due date in the admission offer\nletter..."
+      },
+      {
+        "case_id": "DIFF_13",
+        "type": "Administrative / Mistake Condition",
+        "query": "Can the university withdraw exam hall permission if admit card was issued by mistake?",
+        "detected_language": "English",
+        "difficulty_factor": "Exception clause: withdraw if issued through mistake or student was ineligible",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.95,
+        "top_source": "examination_manual.pdf (p.11)",
+        "answer_excerpt": "The permission given to a student to appear in an examination may be withdrawn if it\nis found that:\n(a) The hall admit c..."
+      },
+      {
+        "case_id": "DIFF_14",
+        "type": "Parental Undertaking Clause",
+        "query": "Under what condition can admission be revoked even if detected at a later date?",
+        "detected_language": "English",
+        "difficulty_factor": "Legal/undertaking language: submission of false information or noncompliance with criteria",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.8875,
+        "top_source": "student_parent_undertaking.pdf (p.2)",
+        "answer_excerpt": "that admission granted to student may be revoked for noncompliance/not meeting the \nadmission criteria even if same is d..."
+      },
+      {
+        "case_id": "DIFF_15",
+        "type": "Cross-Lingual Examination Malpractice",
+        "query": "परीक्षा में नकल (Unfair Means) पकड़े जाने पर कौन सी कमेटी कार्रवाई करती है?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Devanagari script query on disciplinary committee jurisdiction",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.6672,
+        "top_source": "examination_manual.pdf (p.23)",
+        "answer_excerpt": "Rules on Unfair Means: Instructions and Penalty for Use of Unfair Means [Passage 5] (iii)\nConvening of Committee on Unfa..."
+      },
+      {
+        "case_id": "DIFF_16",
+        "type": "Code-Mixed Typo with Acronym",
+        "query": "End sem me UFM lagne par poora semister radd ho sakta hai kya?",
+        "detected_language": "Code-Mixed",
+        "difficulty_factor": "Acronym 'UFM' (Unfair Means) + misspelling 'semister' + Hindi 'radd' (cancelled)",
+        "expected_answerable": "ANSWERABLE",
+        "predicted_answerable": "ANSWERABLE",
+        "is_correct_detection": true,
+        "confidence": 0.5129,
+        "top_source": "examination_manual.pdf (p.22)",
+        "answer_excerpt": "s/guidelines\nfor the examination may also be charged as UFM. [Passage 4] BENNETT\nUNIVERSITY\nTHE TIMES GROUP\n(ii) End Sem..."
+      }
+    ]
+  }
+}

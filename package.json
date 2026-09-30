@@ -1,0 +1,12 @@
+{
+  "name": "indicrag-qa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IndicRAG-QA: Evidence-Grounded Cross-Lingual Question Answering for Indic and Code-Mixed Languages",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "backend": "cd backend && PYTHONPATH=. .venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000",
+    "start": "npm --prefix frontend run dev"
+  }
+}
